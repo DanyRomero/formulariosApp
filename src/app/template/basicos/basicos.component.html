@@ -2,11 +2,7 @@
 <hr />
 <div class="row">
   <div class="col">
-    <form
-      (ngSubmit)="guardar()"
-      #miFormulario="ngForm"
-      autocomplete="off"
-    >
+    <form (ngSubmit)="guardar()" #miFormulario="ngForm" autocomplete="off">
       <!-- campo de producto -->
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Producto</label>
@@ -20,9 +16,7 @@
             required
             minlength="3"
           />
-          <span
-            class="form-text text-danger"
-            *ngIf="nombreValido()"
+          <span class="form-text text-danger" *ngIf="nombreValido()"
             >Debe de ser de 3 letras</span
           >
         </div>
@@ -39,10 +33,9 @@
             name="precio"
             required
           />
-          <span
-            class="form-text text-danger"
-            *ngIf="precioValido()"
-            >El precio debe ser 0 ó mayor</span>
+          <span class="form-text text-danger" *ngIf="precioValido()"
+            >El precio debe ser 0 ó mayor</span
+          >
         </div>
       </div>
       <!-- campo de existencias -->
@@ -55,12 +48,19 @@
             placeholder="Existencias del producto"
             ngModel
             name="existencias"
+            required
+            customMin
+            [minimo] = '0'
           />
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <button type="submit" class="btn btn-primary float-end" [disabled]="miFormulario.invalid">
+          <button
+            type="submit"
+            class="btn btn-primary float-end"
+            [disabled]="miFormulario.invalid"
+          >
             Guardar
           </button>
         </div>
@@ -82,5 +82,8 @@
 
     <span>Value</span>
     <pre>{{ miFormulario.value | json }}</pre>
+
+    <span>CustomDirective</span>
+    <pre>{{ miFormulario.controls['existencias']?.errors | json }}</pre>
   </div>
 </div>
