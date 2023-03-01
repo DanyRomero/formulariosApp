@@ -23,10 +23,11 @@
         <input
           class="form-control"
           placeholder="Agregar favorito"
-          (keyup.enter)="(1)"
-          name="nuevoArtista"
+          (keyup.enter)="agregarFavorito()"
+          [formControl]="nuevoFavorito"
+
         />
-        <button class="btn btn-outline-primary" type="button" (click)="(1)">
+        <button class="btn btn-outline-primary" type="button" (click)="agregarFavorito()">
           Agregar
         </button>
       </div>
@@ -75,7 +76,9 @@
 <span>Value</span>
 <pre>{{miFormulario.value | json}}</pre>
 <br>
+<span>Agregar Juego</span>
+<pre>{{nuevoFavorito.valid }}</pre>
+<pre>{{nuevoFavorito.value }}</pre>
+<br>
 
 
-<!-- <span>Persona</span>
-<pre>{{ persona | json }}</pre> -->
