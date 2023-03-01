@@ -34,6 +34,10 @@ export class DinamicosComponent {
   this.nuevoFavorito.reset()
   }
 
+  borrar(index: number){
+    this.favoritosArr.removeAt(index)
+  }
+
   guardar(){
     if(this.miFormulario.invalid){
       this.miFormulario.markAllAsTouched();
