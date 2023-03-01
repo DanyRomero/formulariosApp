@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveModule } from './reactive/reactive.module';
 import { TemplateModule } from './template/template.module';
+import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path:'template',
     loadChildren:()=>import('./template/template.module').then(m=>m.TemplateModule)
+  },
+  {
+    path:'auth',
+    loadChildren:()=>import('./auth/auth.module').then(m=>m.AuthModule)
   }
 ];
 
