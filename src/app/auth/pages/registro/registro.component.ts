@@ -25,6 +25,10 @@ export class RegistroComponent implements OnInit {
       [Validators.required, Validators.pattern(this.vs.emailPattern)],
     ],
     username: ['', [Validators.required, this.vs.noPuedeSerStrider]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmar: ['', [Validators.required]],
+  }, {
+    validators: [this.vs.camposIguales('password', 'confirmar')]
   });
 
   ngOnInit(): void {
