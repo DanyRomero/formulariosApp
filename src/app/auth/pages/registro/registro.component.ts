@@ -48,6 +48,8 @@ export class RegistroComponent implements OnInit {
       nombre: 'Dany Romero',
       email: 'test1@test.com',
       username: 'Danyrp45',
+      password: '123456',
+      confirmar: '123456'
     });
   }
 
