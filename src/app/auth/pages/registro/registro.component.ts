@@ -6,6 +6,7 @@ import {
   noPuedeSerStrider,
 } from 'src/app/shared/validator/validaciones';
 import { ValidatorService } from '../../../shared/validator/validator.service';
+import { EmailValidatorService } from 'src/app/shared/validator/email-validator.service';
 
 @Component({
   selector: 'app-registro',
@@ -13,23 +14,34 @@ import { ValidatorService } from '../../../shared/validator/validator.service';
   styleUrls: ['./registro.component.css'],
 })
 export class RegistroComponent implements OnInit {
-  constructor(private fb: FormBuilder, private vs: ValidatorService) {}
+  constructor(
+    private fb: FormBuilder,
+    private vs: ValidatorService,
+    private emailValidator: EmailValidatorService
+  ) {}
 
-  miFormulario = this.fb.group({
-    nombre: [
-      '',
-      [Validators.required, Validators.pattern(this.vs.nombreApellidoPattern)],
-    ],
-    email: [
-      '',
-      [Validators.required, Validators.pattern(this.vs.emailPattern)],
-    ],
-    username: ['', [Validators.required, this.vs.noPuedeSerStrider]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmar: ['', [Validators.required]],
-  }, {
-    validators: [this.vs.camposIguales('password', 'confirmar')]
-  });
+  miFormulario = this.fb.group(
+    {
+      nombre: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(this.vs.nombreApellidoPattern),
+        ],
+      ],
+      email: [
+        '',
+        [Validators.required, Validators.pattern(this.vs.emailPattern)],
+        this.emailValidator.validate
+      ],
+      username: ['', [Validators.required, this.vs.noPuedeSerStrider]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmar: ['', [Validators.required]],
+    },
+    {
+      validators: [this.vs.camposIguales('password', 'confirmar')],
+    }
+  );
 
   ngOnInit(): void {
     this.miFormulario.reset({
