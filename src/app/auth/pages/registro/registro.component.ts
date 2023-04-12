@@ -11,7 +11,6 @@ import { EmailValidatorService } from 'src/app/shared/validator/email-validator.
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css'],
 })
 export class RegistroComponent implements OnInit {
   constructor(
@@ -32,7 +31,7 @@ export class RegistroComponent implements OnInit {
       email: [
         '',
         [Validators.required, Validators.pattern(this.vs.emailPattern)],
-        this.emailValidator.validate
+        this.emailValidator.validate,
       ],
       username: ['', [Validators.required, this.vs.noPuedeSerStrider]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -49,7 +48,7 @@ export class RegistroComponent implements OnInit {
       email: 'test1@test.com',
       username: 'Danyrp45',
       password: '123456',
-      confirmar: '123456'
+      confirmar: '123456',
     });
   }
 
@@ -61,7 +60,26 @@ export class RegistroComponent implements OnInit {
   }
 
   submitFormulario() {
-    console.log(this.miFormulario.value);
     this.miFormulario.markAllAsTouched();
+  }
+
+  emailRequired() {
+    return (
+      this.miFormulario.get('email')?.errors?.['required'] &&
+      this.miFormulario.get('email')?.touched
+    );
+  }
+
+  emailFormato() {
+    return (
+      this.miFormulario.get('email')?.errors?.['pattern'] &&
+      this.miFormulario.get('email')?.touched
+    );
+  }
+  emailTomado() {
+    return (
+      this.miFormulario.get('email')?.errors?.['emailTomado'] &&
+      this.miFormulario.get('email')?.touched
+    );
   }
 }

@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-basicos',
   templateUrl: './basicos.component.html',
-  styleUrls: ['./basicos.component.css'],
+  
 })
 export class BasicosComponent implements OnInit{
   /* 

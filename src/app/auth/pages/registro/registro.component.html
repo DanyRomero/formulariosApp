@@ -3,7 +3,11 @@
 
 <div class="row">
   <div class="col">
-    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="submitFormulario()">
+    <form
+      autocomplete="off"
+      [formGroup]="miFormulario"
+      (ngSubmit)="submitFormulario()"
+    >
       <!-- Nombre -->
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Nombre</label>
@@ -29,8 +33,15 @@
             placeholder="Email del usuario"
             formControlName="email"
           />
-          <span class="form-text text-danger" *ngIf="campoNoValido('email')"
-            >El correo es obligatorio</span>
+          <span class="form-text text-danger" *ngIf="emailRequired()"
+            >El correo es obligatorio</span
+          >
+          <span class="form-text text-danger" *ngIf="emailFormato()"
+            >El valor ingresado no tiene formato de correo</span
+          >
+          <span class="form-text text-danger" *ngIf="emailTomado()"
+            >El correo electrónico ya fue tomado</span
+          >
         </div>
       </div>
       <!-- Username -->
@@ -44,7 +55,8 @@
             formControlName="username"
           />
           <span class="form-text text-danger" *ngIf="campoNoValido('username')"
-          >El username no puede ser strider</span>
+            >El username no puede ser strider</span
+          >
         </div>
       </div>
       <!-- Password -->
@@ -58,7 +70,8 @@
             formControlName="password"
           />
           <span class="form-text text-danger" *ngIf="campoNoValido('Password')"
-          >La contraseña debe ser mayor de 6 caracteres</span>
+            >La contraseña debe ser mayor de 6 caracteres</span
+          >
         </div>
       </div>
 
@@ -73,13 +86,18 @@
             formControlName="confirmar"
           />
           <span class="form-text text-danger" *ngIf="campoNoValido('confirmar')"
-          >Las contraseñas deben de ser iguales</span>
+            >Las contraseñas deben de ser iguales</span
+          >
         </div>
       </div>
       <!-- Confirmación -->
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary float-end" type="submit" [disabled]="miFormulario.pending">
+          <button
+            class="btn btn-primary float-end"
+            type="submit"
+            [disabled]="miFormulario.pending"
+          >
             Guardar
           </button>
         </div>
